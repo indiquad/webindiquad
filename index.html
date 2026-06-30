@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/contact.css">
 
 <style>
 /* ══════════════════════════════════════════
@@ -1611,19 +1612,20 @@ footer {
     </div>
 
     <div class="contact-form-card reveal reveal-d1">
-      <form onsubmit="handleFormSubmit(event)">
+      <form id="contactForm">
+        <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="form-row">
-          <div class="form-group"><label class="form-label">Full Name <span class="req">*</span></label><input class="form-input" type="text" placeholder="Your full name" required></div>
-          <div class="form-group"><label class="form-label">Work Email <span class="req">*</span></label><input class="form-input" type="email" placeholder="you@company.com" required></div>
+          <div class="form-group"><label class="form-label">Full Name <span class="req">*</span></label><input class="form-input" type="text" name="name" placeholder="Your full name" required></div>
+          <div class="form-group"><label class="form-label">Work Email <span class="req">*</span></label><input class="form-input" type="email" name="email" placeholder="you@company.com" required></div>
         </div>
         <div class="form-row">
-          <div class="form-group"><label class="form-label">Company <span class="req">*</span></label><input class="form-input" type="text" placeholder="Your company" required></div>
-          <div class="form-group"><label class="form-label">Phone</label><input class="form-input" type="tel" placeholder="+91 00000 00000"></div>
+          <div class="form-group"><label class="form-label">Company <span class="req">*</span></label><input class="form-input" type="text" name="company" placeholder="Your company" required></div>
+          <div class="form-group"><label class="form-label">Phone</label><input class="form-input" type="tel" name="phone" placeholder="+91 00000 00000"></div>
         </div>
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">I am a <span class="req">*</span></label>
-            <select class="form-select" required>
+            <select class="form-select" name="role" required>
               <option value="" disabled selected>Select your role</option>
               <option>OEM / Manufacturer</option>
               <option>Brand</option>
@@ -1636,7 +1638,7 @@ footer {
           </div>
           <div class="form-group">
             <label class="form-label">Interested in <span class="req">*</span></label>
-            <select class="form-select" required>
+            <select class="form-select" name="interest" required>
               <option value="" disabled selected>Select area</option>
               <option>GeM Enablement (GBO™)</option>
               <option>Channel Development (IPAN™)</option>
@@ -1650,7 +1652,7 @@ footer {
         </div>
         <div class="form-group">
           <label class="form-label">Tell us about your goals</label>
-          <textarea class="form-textarea" placeholder="Your products, current government business, and what you want to achieve..."></textarea>
+          <textarea class="form-textarea" name="message" placeholder="Your products, current government business, and what you want to achieve..."></textarea>
         </div>
         <div class="form-check">
           <input type="checkbox" id="consent" required>
@@ -1788,15 +1790,8 @@ document.querySelectorAll('.dial-segment').forEach(seg => {
   });
 });
 
-/* ─── FORM SUBMIT ─── */
-function handleFormSubmit(e) {
-  e.preventDefault();
-  const btn = e.target.querySelector('.form-submit');
-  btn.textContent = "Thank you — we'll be in touch shortly ✓";
-  btn.style.background = '#15803d';
-  btn.disabled = true;
-}
 </script>
+<script src="js/contact.js"></script>
 
 </body>
 </html>
