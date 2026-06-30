@@ -1,0 +1,7 @@
+{
+  "name": "webindiquad",
+  "private": true,
+  "dependencies": {
+    "resend": "^4.0.0"
+  }
+}
