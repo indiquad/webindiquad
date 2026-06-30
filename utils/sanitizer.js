@@ -1,0 +1,1 @@
+export const sanitize=s=>String(s||'');
