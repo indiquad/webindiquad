@@ -21,6 +21,7 @@ import { isRateLimited } from '../utils/rateLimit.js';
 import { adminEmailHtml, adminEmailText } from '../templates/adminEmail.js';
 import { customerEmailHtml, customerEmailText } from '../templates/customerEmail.js';
 
+
 const TO_EMAIL = process.env.CONTACT_TO_EMAIL || 'business@indiquad.com';
 const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL || 'Indiquad <onboarding@resend.dev>';
 
