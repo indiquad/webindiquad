@@ -1,1 +1,0 @@
-export const validate=(d)=>!!(d.name&&d.email&&d.message);
