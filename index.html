@@ -1,0 +1,1797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Indiquad — Government Business Growth Partner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/contact.css">
+
+<style>
+/* ══════════════════════════════════════════
+   TOKENS
+══════════════════════════════════════════ */
+:root {
+  --navy:    #0C1D39;
+  --navy2:   #162B52;
+  --saffron: #D4620C;
+  --saffron2:#E8742A;
+  --pearl:   #F5F3EE;
+  --pearl2:  #ECEAE4;
+  --stone:   #6B7280;
+  --graphite:#1E2D45;
+  --border:  #DDD9D0;
+  --white:   #FFFFFF;
+
+  --ds: 'DM Serif Display', Georgia, serif;
+  --dm: 'DM Sans', system-ui, sans-serif;
+}
+
+/* ══════════════════════════════════════════
+   RESET & BASE
+══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--dm);
+  background: var(--pearl);
+  color: var(--navy);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; }
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; font-family: var(--dm); border: none; }
+
+/* ══════════════════════════════════════════
+   NAVIGATION
+══════════════════════════════════════════ */
+#nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 56px;
+  background: rgba(245,243,238,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid transparent;
+  transition: border-color .3s, box-shadow .3s;
+}
+#nav.pinned {
+  border-color: var(--border);
+  box-shadow: 0 1px 16px rgba(12,29,57,.06);
+}
+
+.nav-logo { display: flex; align-items: center; gap: 10px; }
+.nav-logo-mark {
+  width: 34px; height: 34px; border-radius: 7px;
+  background: var(--navy);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.nav-logo-mark svg { width: 18px; height: 18px; }
+.nav-logo-name {
+  font-family: var(--dm); font-size: 15px; font-weight: 700;
+  color: var(--navy); letter-spacing: .08em; text-transform: uppercase;
+}
+.nav-logo-name sup {
+  font-size: 8px; letter-spacing: 0; vertical-align: super;
+  opacity: .6; font-weight: 500;
+}
+
+.nav-links {
+  display: flex; list-style: none; gap: 0;
+  position: absolute; left: 50%; transform: translateX(-50%);
+}
+.nav-links a {
+  display: block; padding: 8px 16px; font-size: 13.5px;
+  font-weight: 500; color: var(--stone);
+  border-radius: 6px; transition: color .2s, background .2s;
+}
+.nav-links a:hover { color: var(--navy); background: rgba(12,29,57,.06); }
+
+.nav-cta {
+  background: var(--navy); color: var(--white);
+  padding: 9px 22px; border-radius: 7px;
+  font-size: 13.5px; font-weight: 600; letter-spacing: .02em;
+  transition: background .2s, transform .15s;
+}
+.nav-cta:hover { background: var(--navy2); transform: translateY(-1px); }
+
+/* ══════════════════════════════════════════
+   HERO
+══════════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  background: var(--navy);
+  display: flex; align-items: center;
+  padding: 96px 56px 72px;
+  position: relative; overflow: hidden;
+}
+
+/* Subtle grain texture via SVG filter */
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 70% at 58% 40%, rgba(212,98,12,.07) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at 5% 90%, rgba(255,255,255,.02) 0%, transparent 50%);
+  pointer-events: none;
+}
+/* Fine grid */
+.hero::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+.hero-inner {
+  position: relative; z-index: 2;
+  max-width: 1280px; margin: 0 auto; width: 100%;
+  display: grid; grid-template-columns: 1fr 520px;
+  gap: 64px; align-items: center;
+}
+
+.hero-kicker {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--dm); font-size: 11px; font-weight: 600;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--saffron2); margin-bottom: 24px;
+}
+.hero-kicker-dash { width: 20px; height: 1px; background: var(--saffron2); }
+
+.hero-h1 {
+  font-family: var(--ds);
+  font-size: clamp(44px, 5.5vw, 72px);
+  line-height: 1.0;
+  color: var(--white);
+  margin-bottom: 28px;
+  letter-spacing: -.01em;
+}
+.hero-h1 em { color: var(--saffron2); font-style: italic; }
+
+.hero-body {
+  font-size: 17px; color: rgba(255,255,255,.5);
+  line-height: 1.75; max-width: 440px;
+  margin-bottom: 42px; font-weight: 300;
+}
+
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.btn-fill {
+  background: var(--saffron); color: var(--white);
+  padding: 13px 30px; border-radius: 7px;
+  font-size: 14px; font-weight: 600; letter-spacing: .02em;
+  transition: background .2s, transform .2s, box-shadow .2s;
+}
+.btn-fill:hover {
+  background: #b8540a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(212,98,12,.38);
+}
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.18);
+  color: rgba(255,255,255,.75);
+  padding: 12px 28px; border-radius: 7px;
+  font-size: 14px; font-weight: 500; letter-spacing: .02em;
+  transition: border-color .2s, color .2s;
+}
+.btn-ghost:hover { border-color: rgba(255,255,255,.45); color: var(--white); }
+
+.hero-proof {
+  margin-top: 52px; padding-top: 36px;
+  border-top: 1px solid rgba(255,255,255,.08);
+  display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+}
+.proof-label {
+  font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+  color: rgba(255,255,255,.26); font-weight: 500;
+}
+.proof-chips { display: flex; gap: 7px; flex-wrap: wrap; }
+.proof-chip {
+  font-size: 12px; color: rgba(255,255,255,.38);
+  border: 1px solid rgba(255,255,255,.1);
+  padding: 4px 13px; border-radius: 20px;
+}
+
+/* ══════════════════════════════════════════
+   INTELLIGENCE DIAL (signature element)
+══════════════════════════════════════════ */
+.dial-wrap {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+}
+
+#dial { width: 100%; max-width: 520px; }
+
+.dial-segment {
+  transition: opacity .25s, filter .25s;
+  cursor: pointer;
+}
+.dial-segment:hover { filter: brightness(1.3); }
+
+/* tooltip */
+.dial-tooltip {
+  position: absolute;
+  background: rgba(10,18,36,.96);
+  border: 1px solid rgba(212,98,12,.3);
+  border-radius: 10px; padding: 14px 18px;
+  pointer-events: none;
+  opacity: 0; transition: opacity .2s;
+  max-width: 200px; min-width: 160px;
+  backdrop-filter: blur(12px);
+}
+.dial-tooltip.visible { opacity: 1; }
+.dt-name {
+  font-family: var(--dm); font-size: 13px; font-weight: 700;
+  color: var(--white); margin-bottom: 5px;
+}
+.dt-desc { font-size: 11.5px; color: rgba(255,255,255,.5); line-height: 1.55; }
+
+/* ══════════════════════════════════════════
+   STATS RIBBON
+══════════════════════════════════════════ */
+.stats-ribbon {
+  background: var(--saffron);
+  padding: 0 56px;
+}
+.stats-inner {
+  max-width: 1280px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(5, 1fr);
+}
+.stat-cell {
+  padding: 28px 12px; text-align: center;
+  border-right: 1px solid rgba(255,255,255,.2);
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+}
+.stat-cell:last-child { border-right: none; }
+.stat-n {
+  font-family: var(--ds); font-size: 26px;
+  color: var(--white); letter-spacing: -.01em;
+}
+.stat-l {
+  font-size: 11px; color: rgba(255,255,255,.68);
+  text-transform: uppercase; letter-spacing: .07em; font-weight: 500;
+}
+
+/* ══════════════════════════════════════════
+   SHARED SECTION UTILITIES
+══════════════════════════════════════════ */
+.section { padding: 96px 56px; }
+.section-inner { max-width: 1280px; margin: 0 auto; }
+
+.eyebrow {
+  display: flex; align-items: center; gap: 9px;
+  font-family: var(--dm); font-size: 11px; font-weight: 600;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--saffron); margin-bottom: 16px;
+}
+.eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--saffron); }
+
+.section-h2 {
+  font-family: var(--ds);
+  font-size: clamp(30px, 3.8vw, 48px);
+  line-height: 1.1; letter-spacing: -.01em;
+  color: var(--navy); margin-bottom: 18px;
+}
+.section-h2 em { color: var(--saffron); font-style: italic; }
+.section-h2.light { color: var(--white); }
+.section-h2.light em { color: var(--saffron2); }
+
+.section-lead {
+  font-size: 17px; color: var(--stone);
+  line-height: 1.78; max-width: 560px; font-weight: 300;
+}
+.section-lead.light { color: rgba(255,255,255,.48); }
+
+/* ══════════════════════════════════════════
+   FRAMEWORK — 4 LAYER GRID
+══════════════════════════════════════════ */
+.framework-bg { background: var(--white); }
+
+.framework-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  margin-top: 56px;
+  border: 1px solid var(--border);
+  border-radius: 12px; overflow: hidden;
+  background: var(--border); gap: 1px;
+}
+
+.fw-card {
+  background: var(--white); padding: 34px 26px;
+  position: relative; overflow: hidden;
+  transition: background .2s;
+}
+.fw-card:hover { background: var(--pearl); }
+
+.fw-card-top-bar {
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  opacity: 0; transition: opacity .3s;
+}
+.fw-card:hover .fw-card-top-bar { opacity: 1; }
+
+.fw-ipin .fw-card-top-bar { background: var(--navy); }
+.fw-ipan .fw-card-top-bar { background: var(--saffron); }
+.fw-ipts .fw-card-top-bar { background: #0f766e; }
+.fw-gbo  .fw-card-top-bar { background: #6b21a8; }
+
+.fw-layer-tag {
+  font-size: 10px; font-weight: 600; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--stone); margin-bottom: 14px;
+}
+.fw-product-name {
+  font-family: var(--ds); font-size: 22px; color: var(--navy);
+  margin-bottom: 6px; display: block;
+}
+.fw-product-full {
+  font-size: 12px; color: var(--stone); line-height: 1.45; margin-bottom: 16px;
+}
+.fw-desc { font-size: 13.5px; color: var(--stone); line-height: 1.72; }
+.fw-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 20px; font-size: 13px; font-weight: 600;
+  color: var(--saffron); transition: gap .2s;
+}
+.fw-card:hover .fw-link { gap: 10px; }
+
+/* ══════════════════════════════════════════
+   IPIN — TWO COLUMN
+══════════════════════════════════════════ */
+.ipin-bg { background: var(--pearl); }
+.ipin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+
+.pipeline {
+  margin-top: 40px;
+  border-left: 2px solid var(--border);
+  padding-left: 28px;
+  display: flex; flex-direction: column; gap: 0;
+}
+.pipeline-step { padding: 20px 0; position: relative; }
+.pipeline-step:not(:last-child) { border-bottom: 1px solid var(--border); }
+.pipeline-step::before {
+  content: '';
+  position: absolute; left: -34px; top: 26px;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--pearl); border: 2px solid var(--border);
+  transition: border-color .2s, background .2s;
+}
+.pipeline-step:hover::before {
+  border-color: var(--saffron); background: var(--saffron);
+}
+.pipeline-step-tag {
+  font-size: 10px; font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--saffron); margin-bottom: 6px;
+}
+.pipeline-step-title {
+  font-family: var(--dm); font-size: 15px; font-weight: 700;
+  color: var(--navy); margin-bottom: 4px;
+}
+.pipeline-step-desc {
+  font-size: 13px; color: var(--stone); line-height: 1.65;
+}
+.pipeline-step-badge {
+  display: inline-block; margin-top: 8px;
+  font-size: 11px; font-weight: 600;
+  color: var(--saffron); background: rgba(212,98,12,.08);
+  padding: 3px 10px; border-radius: 20px; letter-spacing: .04em;
+}
+.pipeline-step-badge.ai-badge {
+  color: #6366f1; background: rgba(99,102,241,.08);
+}
+
+/* IPIN contract feed card */
+.contract-feed {
+  background: var(--navy); border-radius: 14px; overflow: hidden;
+  box-shadow: 0 24px 64px rgba(12,29,57,.2);
+}
+.cf-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 13px 18px;
+  background: rgba(255,255,255,.04);
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.cf-title {
+  font-size: 10.5px; font-weight: 700; letter-spacing: .2em;
+  text-transform: uppercase; color: rgba(255,255,255,.4);
+}
+.cf-live {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 10px; font-weight: 700; color: #4ade80;
+}
+.live-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: #4ade80;
+  animation: pulse-live 1.6s ease-in-out infinite;
+}
+@keyframes pulse-live { 0%,100% { opacity:1 } 50% { opacity:.3 } }
+
+.cf-item {
+  display: flex; gap: 11px; padding: 13px 18px;
+  border-bottom: 1px solid rgba(255,255,255,.04);
+  transition: background .15s;
+}
+.cf-item:hover { background: rgba(255,255,255,.03); }
+.cf-item:last-of-type { border-bottom: none; }
+.cf-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+.cf-body { flex: 1; }
+.cf-org { font-size: 12.5px; font-weight: 600; color: rgba(255,255,255,.82); }
+.cf-detail { font-size: 11px; color: rgba(255,255,255,.36); margin-top: 2px; }
+.cf-meta { display: flex; gap: 7px; margin-top: 5px; }
+.cf-tag {
+  font-size: 10px; font-weight: 500;
+  background: rgba(255,255,255,.07);
+  color: rgba(255,255,255,.4); padding: 2px 9px; border-radius: 10px;
+}
+.cf-id { font-size: 10px; color: rgba(255,255,255,.2); }
+
+.cf-metrics {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid rgba(255,255,255,.07);
+}
+.cf-m {
+  padding: 12px 8px; text-align: center;
+  border-right: 1px solid rgba(255,255,255,.05);
+}
+.cf-m:last-child { border-right: none; }
+.cf-m-val {
+  font-family: var(--ds); font-size: 16px; color: var(--white);
+}
+.cf-m-lbl {
+  font-size: 9px; color: rgba(255,255,255,.3);
+  text-transform: uppercase; letter-spacing: .08em; margin-top: 2px;
+}
+
+/* ══════════════════════════════════════════
+   INTELLIGENCE LAYERS
+══════════════════════════════════════════ */
+.layers-bg {
+  background: var(--navy);
+  position: relative; overflow: hidden;
+}
+.layers-bg::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,.035) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+.layers-inner { position: relative; z-index: 2; }
+.layers-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px; margin-top: 52px;
+}
+.layer-card {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: 12px; padding: 28px 24px;
+  transition: background .25s, border-color .25s, transform .25s;
+}
+.layer-card:hover {
+  background: rgba(255,255,255,.07);
+  border-color: rgba(212,98,12,.28);
+  transform: translateY(-3px);
+}
+.lc-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: rgba(212,98,12,.12);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; margin-bottom: 16px;
+}
+.lc-name {
+  font-family: var(--dm); font-size: 15px; font-weight: 700;
+  color: var(--white); margin-bottom: 8px;
+}
+.lc-desc { font-size: 13px; color: rgba(255,255,255,.42); line-height: 1.7; }
+
+/* ══════════════════════════════════════════
+   AGENTIC AI
+══════════════════════════════════════════ */
+.ai-bg { background: var(--navy); padding-top: 0; }
+.ai-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px; margin-top: 52px;
+}
+.ai-card {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: 12px; padding: 28px 24px;
+  transition: all .25s;
+}
+.ai-card:hover {
+  background: rgba(255,255,255,.07);
+  border-color: rgba(99,102,241,.3);
+  transform: translateY(-3px);
+}
+.ai-tier-tag {
+  font-size: 10px; font-weight: 700; letter-spacing: .16em;
+  text-transform: uppercase; color: #a5b4fc; margin-bottom: 12px;
+}
+.ai-card-title {
+  font-family: var(--dm); font-size: 16px; font-weight: 700;
+  color: var(--white); margin-bottom: 10px;
+}
+.ai-card-desc { font-size: 13px; color: rgba(255,255,255,.42); line-height: 1.68; }
+.ai-bullets { margin-top: 14px; display: flex; flex-direction: column; gap: 6px; }
+.ai-bullet {
+  font-size: 12px; color: rgba(255,255,255,.34);
+  line-height: 1.5; padding-left: 14px; position: relative;
+}
+.ai-bullet::before {
+  content: '›'; position: absolute; left: 0;
+  color: #a5b4fc; font-size: 13px;
+}
+
+/* ══════════════════════════════════════════
+   IPAN — Awareness
+══════════════════════════════════════════ */
+.ipan-bg { background: var(--white); }
+.ipan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+
+.program-cards { display: flex; flex-direction: column; gap: 2px; margin-top: 36px; }
+.prog-card {
+  display: flex; gap: 14px; padding: 16px 18px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 8px; transition: border-color .2s, box-shadow .2s;
+}
+.prog-card:hover {
+  border-color: var(--saffron);
+  box-shadow: 0 4px 18px rgba(212,98,12,.08);
+}
+.prog-icon {
+  width: 36px; height: 36px; border-radius: 8px;
+  background: rgba(212,98,12,.08);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; flex-shrink: 0;
+}
+.prog-title {
+  font-family: var(--dm); font-size: 14px; font-weight: 700;
+  color: var(--navy); margin-bottom: 3px;
+}
+.prog-desc { font-size: 12.5px; color: var(--stone); line-height: 1.6; }
+
+/* IPAN stats visual */
+.ipan-vis { display: flex; flex-direction: column; gap: 14px; }
+.ipan-big {
+  background: var(--pearl); border: 1px solid var(--border);
+  border-radius: 12px; padding: 26px;
+}
+.ipan-big-label {
+  font-size: 11px; font-weight: 600; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--stone); margin-bottom: 7px;
+}
+.ipan-big-num {
+  font-family: var(--ds); font-size: 54px; color: var(--navy);
+  line-height: 1; letter-spacing: -.02em;
+}
+.ipan-big-num em { color: var(--saffron); font-style: normal; }
+.ipan-big-sub { font-size: 13px; color: var(--stone); margin-top: 7px; }
+.category-cloud { display: flex; flex-wrap: wrap; gap: 7px; }
+.cat-chip {
+  background: var(--pearl); border: 1px solid var(--border);
+  padding: 6px 14px; border-radius: 6px; font-size: 12.5px; color: #374151;
+  font-weight: 500; transition: all .2s; cursor: default;
+}
+.cat-chip:hover { border-color: var(--saffron); color: var(--saffron); }
+
+/* ══════════════════════════════════════════
+   IPTS — Trust Scores
+══════════════════════════════════════════ */
+.ipts-bg { background: var(--pearl); }
+.ipts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+
+.tier-list { margin-top: 36px; }
+.tier-row {
+  display: flex; align-items: center; gap: 14px;
+  padding: 13px 0; border-bottom: 1px solid var(--border);
+}
+.tier-row:last-child { border-bottom: none; }
+.tier-label { font-family: var(--dm); font-size: 13.5px; font-weight: 700; width: 72px; flex-shrink: 0; }
+.t-plat .tier-label { color: var(--navy); }
+.t-gold .tier-label { color: #b45309; }
+.t-silv .tier-label { color: #64748b; }
+.t-watch .tier-label { color: #b91c1c; }
+.tier-track { flex: 1; height: 7px; background: var(--pearl2); border-radius: 4px; overflow: hidden; }
+.tier-bar { height: 7px; border-radius: 4px; }
+.t-plat .tier-bar { background: var(--navy); width: 94%; }
+.t-gold .tier-bar { background: #d97706; width: 74%; }
+.t-silv .tier-bar { background: #94a3b8; width: 52%; }
+.t-watch .tier-bar { background: #ef4444; width: 24%; }
+.tier-desc { font-size: 12px; color: var(--stone); width: 72px; text-align: right; flex-shrink: 0; }
+
+.dim-cloud { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 22px; }
+.dim-chip {
+  font-size: 12px; background: var(--white); border: 1px solid var(--border);
+  color: #374151; padding: 4px 12px; border-radius: 20px; font-weight: 500;
+}
+.ipts-note { font-size: 12.5px; color: var(--stone); line-height: 1.65; margin-top: 18px; }
+
+/* Reseller card */
+.reseller-card {
+  background: var(--navy); border-radius: 14px; overflow: hidden;
+  box-shadow: 0 20px 56px rgba(12,29,57,.18);
+}
+.rc-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 13px 18px; background: rgba(255,255,255,.04);
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.rc-head-label {
+  font-size: 10.5px; font-weight: 700; letter-spacing: .2em;
+  text-transform: uppercase; color: rgba(255,255,255,.4);
+}
+.rc-tier-badge {
+  font-size: 11px; font-weight: 700; padding: 3px 11px;
+  border-radius: 20px; letter-spacing: .04em;
+  background: rgba(12,29,57,.6); color: #93c5fd;
+  border: 1px solid rgba(147,197,253,.22);
+}
+.rc-body-inner { padding: 18px; }
+.rc-company { font-family: var(--ds); font-size: 16px; color: var(--white); }
+.rc-location { font-size: 12px; color: rgba(255,255,255,.36); margin-top: 3px; }
+.rc-kpis { display: grid; grid-template-columns: repeat(3,1fr); gap: 7px; margin: 14px 0; }
+.rc-kpi { background: rgba(255,255,255,.04); border-radius: 8px; padding: 11px 8px; text-align: center; }
+.rc-kpi-val { font-family: var(--ds); font-size: 17px; color: var(--white); }
+.rc-kpi-lbl { font-size: 9px; color: rgba(255,255,255,.3); text-transform: uppercase; letter-spacing: .06em; margin-top: 2px; }
+.rc-bars { display: flex; flex-direction: column; gap: 8px; }
+.rc-bar-row { display: flex; align-items: center; gap: 9px; }
+.rc-bar-name { font-size: 11px; color: rgba(255,255,255,.4); width: 130px; flex-shrink: 0; }
+.rc-bar-track { flex: 1; height: 4px; background: rgba(255,255,255,.07); border-radius: 3px; }
+.rc-bar-fill { height: 4px; border-radius: 3px; background: var(--saffron2); }
+.rc-bar-val { font-size: 10px; font-weight: 600; color: rgba(255,255,255,.55); width: 38px; text-align: right; }
+.rc-footer {
+  font-size: 10px; font-weight: 600; color: rgba(255,255,255,.22);
+  letter-spacing: .08em; text-transform: uppercase;
+  margin-top: 12px; padding-top: 11px;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+
+/* ══════════════════════════════════════════
+   NBFC SECTION
+══════════════════════════════════════════ */
+.nbfc-bg { background: var(--white); }
+.nbfc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+
+.use-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+.use-item { display: flex; gap: 13px; align-items: flex-start; }
+.use-icon {
+  width: 38px; height: 38px; border-radius: 9px; flex-shrink: 0;
+  background: rgba(212,98,12,.09);
+  display: flex; align-items: center; justify-content: center; font-size: 16px;
+}
+.use-title { font-family: var(--dm); font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 3px; }
+.use-desc { font-size: 13px; color: var(--stone); line-height: 1.6; }
+
+/* NBFC visual */
+.nbfc-vis { display: flex; flex-direction: column; gap: 12px; }
+.nbfc-profile {
+  background: var(--pearl); border: 1px solid var(--border);
+  border-radius: 12px; padding: 18px;
+}
+.nbfc-prof-row { display: flex; align-items: center; gap: 11px; margin-bottom: 14px; }
+.nbfc-avatar {
+  width: 38px; height: 38px; border-radius: 9px; background: var(--navy);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--dm); font-size: 13px; font-weight: 700;
+  color: var(--white); flex-shrink: 0;
+}
+.nbfc-co-name { font-family: var(--dm); font-size: 13.5px; font-weight: 700; color: var(--navy); }
+.nbfc-co-loc { font-size: 12px; color: var(--stone); }
+.nbfc-risk {
+  margin-left: auto; font-size: 11px; font-weight: 700;
+  background: #f0fdf4; color: #15803d; border: 1px solid #86efac;
+  padding: 3px 11px; border-radius: 20px; flex-shrink: 0;
+}
+.nbfc-kpis { display: grid; grid-template-columns: repeat(3,1fr); gap: 7px; margin-bottom: 14px; }
+.nbfc-kpi {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px 8px; text-align: center;
+}
+.nbfc-kpi-val { font-family: var(--ds); font-size: 15px; color: var(--navy); }
+.nbfc-kpi-lbl { font-size: 9px; color: var(--stone); text-transform: uppercase; letter-spacing: .05em; margin-top: 2px; }
+.nbfc-orders-label {
+  font-size: 10.5px; font-weight: 600; color: var(--stone);
+  text-transform: uppercase; letter-spacing: .09em; margin-bottom: 8px;
+}
+.nbfc-order-row { display: flex; align-items: center; gap: 9px; padding: 6px 0; border-bottom: 1px solid var(--border); }
+.nbfc-order-row:last-child { border-bottom: none; }
+.nbfc-od { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.nbfc-ot { flex: 1; font-size: 12px; color: #374151; }
+.nbfc-ov { font-size: 12px; font-weight: 600; color: var(--navy); }
+.nbfc-disclaimer {
+  background: rgba(212,98,12,.05); border: 1px solid rgba(212,98,12,.15);
+  border-radius: 9px; padding: 14px 16px;
+  font-size: 12px; color: #374151; line-height: 1.65;
+}
+.nbfc-disclaimer strong { color: var(--saffron); font-weight: 600; }
+
+/* ══════════════════════════════════════════
+   GBO SECTION
+══════════════════════════════════════════ */
+.gbo-bg {
+  background: var(--graphite);
+  position: relative; overflow: hidden;
+}
+.gbo-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,.03) 1px, transparent 1px);
+  background-size: 24px 24px; pointer-events: none;
+}
+.gbo-inner { position: relative; z-index: 2; }
+
+.gbo-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px; margin-top: 52px;
+}
+.gbo-card {
+  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07);
+  border-radius: 12px; padding: 28px 24px;
+  transition: all .25s;
+}
+.gbo-card:hover {
+  background: rgba(255,255,255,.07); border-color: rgba(212,98,12,.3);
+  transform: translateY(-3px);
+}
+.gbo-card-tag {
+  font-size: 10px; font-weight: 700; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--saffron2); margin-bottom: 12px;
+}
+.gbo-card-title {
+  font-family: var(--dm); font-size: 16px; font-weight: 700;
+  color: var(--white); margin-bottom: 9px;
+}
+.gbo-card-desc { font-size: 13px; color: rgba(255,255,255,.42); line-height: 1.7; }
+
+.gbo-revenue {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  margin-top: 20px;
+}
+.gbo-rev-card {
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
+  border-radius: 11px; padding: 22px;
+}
+.gbo-rev-tag {
+  font-size: 10px; font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--saffron2); margin-bottom: 7px;
+}
+.gbo-rev-title {
+  font-family: var(--dm); font-size: 15px; font-weight: 700;
+  color: var(--white); margin-bottom: 5px;
+}
+.gbo-rev-desc { font-size: 12.5px; color: rgba(255,255,255,.38); line-height: 1.6; }
+
+/* ══════════════════════════════════════════
+   MOAT — Competitive Advantages
+══════════════════════════════════════════ */
+.moat-bg { background: var(--pearl); }
+.moat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 52px; }
+.moat-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 12px; padding: 30px;
+  transition: all .25s;
+}
+.moat-card:hover {
+  border-color: rgba(212,98,12,.28);
+  box-shadow: 0 8px 32px rgba(12,29,57,.08);
+  transform: translateY(-3px);
+}
+.moat-num {
+  font-family: var(--ds); font-size: 42px; color: rgba(212,98,12,.14);
+  line-height: 1; margin-bottom: 10px;
+}
+.moat-title {
+  font-family: var(--dm); font-size: 17px; font-weight: 700;
+  color: var(--navy); margin-bottom: 8px;
+}
+.moat-desc { font-size: 13.5px; color: var(--stone); line-height: 1.73; }
+
+/* ══════════════════════════════════════════
+   CTA BAND
+══════════════════════════════════════════ */
+.cta-band {
+  background: var(--navy); padding: 108px 56px;
+  text-align: center; position: relative; overflow: hidden;
+}
+.cta-band::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 70% at 50% -10%, rgba(212,98,12,.14), transparent 60%);
+  pointer-events: none;
+}
+.cta-band::after {
+  content: ''; position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,.03) 1px, transparent 1px);
+  background-size: 28px 28px; pointer-events: none;
+}
+.cta-inner { position: relative; z-index: 2; max-width: 640px; margin: 0 auto; }
+.cta-eyebrow {
+  display: flex; align-items: center; justify-content: center; gap: 9px;
+  font-family: var(--dm); font-size: 11px; font-weight: 600;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--saffron2); margin-bottom: 22px;
+}
+.cta-eyebrow::before,
+.cta-eyebrow::after { content: ''; width: 22px; height: 1px; background: var(--saffron2); }
+.cta-h2 {
+  font-family: var(--ds); font-size: clamp(36px, 5vw, 56px);
+  color: var(--white); line-height: 1.06; margin-bottom: 18px;
+}
+.cta-h2 em { color: var(--saffron2); font-style: italic; }
+.cta-body { font-size: 17px; color: rgba(255,255,255,.46); line-height: 1.72; margin-bottom: 40px; }
+.cta-buttons { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.btn-cta-fill {
+  background: var(--saffron); color: var(--white);
+  padding: 14px 34px; border-radius: 7px;
+  font-size: 15px; font-weight: 600; letter-spacing: .02em;
+  transition: all .2s;
+}
+.btn-cta-fill:hover { background: #b8540a; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(212,98,12,.4); }
+.btn-cta-ghost {
+  background: none; border: 1px solid rgba(255,255,255,.18);
+  color: rgba(255,255,255,.72); padding: 13px 30px; border-radius: 7px;
+  font-size: 15px; font-weight: 500; transition: all .2s;
+}
+.btn-cta-ghost:hover { border-color: rgba(255,255,255,.44); color: var(--white); }
+
+/* ══════════════════════════════════════════
+   CONTACT
+══════════════════════════════════════════ */
+.contact-section { background: var(--pearl); padding: 96px 56px; }
+.contact-grid {
+  max-width: 1280px; margin: 0 auto;
+  display: grid; grid-template-columns: .9fr 1.1fr; gap: 80px; align-items: start;
+}
+.contact-info-list { margin-top: 36px; display: flex; flex-direction: column; gap: 22px; }
+.ci { display: flex; gap: 13px; align-items: flex-start; }
+.ci-icon {
+  width: 38px; height: 38px; border-radius: 9px; flex-shrink: 0;
+  background: rgba(212,98,12,.09);
+  display: flex; align-items: center; justify-content: center; font-size: 16px;
+}
+.ci-label {
+  font-size: 10.5px; font-weight: 600; color: var(--stone);
+  text-transform: uppercase; letter-spacing: .09em; margin-bottom: 3px;
+}
+.ci-value {
+  font-family: var(--dm); font-size: 14px; font-weight: 700; color: var(--navy);
+}
+.ci-value a { transition: color .2s; }
+.ci-value a:hover { color: var(--saffron); }
+.ci-sub { font-size: 12px; color: var(--stone); margin-top: 2px; }
+.contact-trust { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 36px; }
+.contact-trust-badge {
+  background: var(--white); border: 1px solid var(--border);
+  font-size: 12px; color: #374151; font-weight: 500;
+  padding: 6px 13px; border-radius: 20px;
+}
+
+/* Contact form */
+.contact-form-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 14px; padding: 38px;
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-group { display: flex; flex-direction: column; gap: 5px; margin-bottom: 14px; }
+.form-label { font-size: 12.5px; font-weight: 600; color: var(--navy); letter-spacing: .01em; }
+.form-label .req { color: var(--saffron); }
+.form-input, .form-select, .form-textarea {
+  font-family: var(--dm); font-size: 13.5px; color: var(--navy);
+  background: var(--pearl); border: 1.5px solid var(--border);
+  border-radius: 8px; padding: 10px 13px; outline: none; width: 100%;
+  transition: border-color .2s, box-shadow .2s;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--saffron); background: var(--white);
+  box-shadow: 0 0 0 3px rgba(212,98,12,.1);
+}
+.form-input::placeholder, .form-textarea::placeholder { color: #b0bac6; }
+.form-textarea { resize: vertical; min-height: 96px; line-height: 1.6; }
+.form-select {
+  appearance: none; cursor: pointer;
+  background-color: var(--pearl);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7'%3E%3Cpath d='M1 1l4.5 4.5L10 1' stroke='%236B7280' stroke-width='1.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 13px center;
+  padding-right: 34px;
+}
+.form-check { display: flex; gap: 9px; margin-bottom: 20px; }
+.form-check input { margin-top: 3px; accent-color: var(--saffron); width: 14px; height: 14px; flex-shrink: 0; }
+.form-check label { font-size: 12px; color: var(--stone); line-height: 1.6; }
+.form-check label a { color: var(--saffron); }
+.form-submit {
+  width: 100%; background: var(--navy); color: var(--white);
+  padding: 13px; border-radius: 8px;
+  font-family: var(--dm); font-size: 14px; font-weight: 600; letter-spacing: .02em;
+  transition: background .2s, transform .15s, box-shadow .2s;
+}
+.form-submit:hover { background: var(--navy2); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(12,29,57,.22); }
+.form-note { font-size: 11.5px; color: var(--stone); text-align: center; margin-top: 10px; }
+
+/* ══════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════ */
+footer {
+  background: #060e1c; padding: 60px 56px 34px;
+  border-top: 1px solid rgba(255,255,255,.05);
+}
+.footer-inner { max-width: 1280px; margin: 0 auto; }
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 44px; margin-bottom: 52px; }
+.footer-brand-logo { display: flex; align-items: center; gap: 9px; margin-bottom: 14px; }
+.footer-brand-logo-mark {
+  width: 30px; height: 30px; border-radius: 6px;
+  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1);
+  display: flex; align-items: center; justify-content: center;
+}
+.footer-brand-logo-mark svg { width: 16px; height: 16px; }
+.footer-brand-name {
+  font-family: var(--dm); font-size: 14px; font-weight: 700;
+  color: rgba(255,255,255,.45); letter-spacing: .08em; text-transform: uppercase;
+}
+.footer-brand-desc { font-size: 13px; color: rgba(255,255,255,.26); line-height: 1.75; max-width: 220px; }
+.footer-brand-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 14px; }
+.footer-brand-tag {
+  font-size: 10px; font-weight: 600; letter-spacing: .04em;
+  border: 1px solid rgba(255,255,255,.1); color: rgba(255,255,255,.22);
+  padding: 3px 9px; border-radius: 4px; text-transform: uppercase;
+}
+.footer-col h5 {
+  font-family: var(--dm); font-size: 10px; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: rgba(255,255,255,.36); margin-bottom: 14px;
+}
+.footer-col a {
+  display: block; font-size: 13px; color: rgba(255,255,255,.27);
+  margin-bottom: 9px; transition: color .2s;
+}
+.footer-col a:hover { color: rgba(255,255,255,.72); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.06); padding-top: 26px;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+}
+.footer-copy { font-size: 12px; color: rgba(255,255,255,.2); }
+.footer-powered { display: flex; align-items: center; gap: 6px; font-size: 11px; color: rgba(255,255,255,.18); }
+.footer-powered-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--saffron2); opacity: .45; }
+
+/* ══════════════════════════════════════════
+   SCROLL REVEAL
+══════════════════════════════════════════ */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .65s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-d1 { transition-delay: .1s; }
+.reveal-d2 { transition-delay: .2s; }
+.reveal-d3 { transition-delay: .3s; }
+
+/* ══════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════ */
+@media (max-width: 1040px) {
+  #nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .section, .cta-band, .contact-section, footer { padding-left: 24px; padding-right: 24px; }
+  .stats-ribbon { padding: 0 24px; }
+  .hero { padding: 88px 24px 64px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+  .dial-wrap { display: none; }
+  .stats-inner { grid-template-columns: repeat(3,1fr); }
+  .framework-grid { grid-template-columns: repeat(2,1fr); }
+  .ipin-grid, .ipan-grid, .ipts-grid, .nbfc-grid, .contact-grid { grid-template-columns: 1fr; gap: 44px; }
+  .layers-grid, .ai-grid, .gbo-grid, .moat-grid { grid-template-columns: 1fr 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  footer { padding-top: 44px; }
+}
+@media (max-width: 600px) {
+  .framework-grid, .layers-grid, .ai-grid, .gbo-grid, .moat-grid, .gbo-revenue, .footer-top { grid-template-columns: 1fr; }
+  .stats-inner { grid-template-columns: 1fr 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav id="nav">
+  <a class="nav-logo" href="#top">
+    <div class="nav-logo-mark">
+      <svg viewBox="0 0 18 18" fill="none">
+        <rect x="2" y="2.5" width="2.8" height="13" rx=".9" fill="white"/>
+        <circle cx="12" cy="8.5" r="5.2" stroke="white" stroke-width="2.2" fill="none"/>
+        <line x1="15.8" y1="12.5" x2="18.2" y2="16" stroke="#D4620C" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <span class="nav-logo-name">INDIQUAD</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#framework">Framework</a></li>
+    <li><a href="#ipin">Intelligence</a></li>
+    <li><a href="#ai">AI Layer</a></li>
+    <li><a href="#ipan">Awareness</a></li>
+    <li><a href="#ipts">Trust</a></li>
+    <li><a href="#gbo">GBO™</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+
+  <button class="nav-cta" onclick="smoothTo('contact')">Request Demo</button>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero" id="top">
+  <div class="hero-inner">
+
+    <!-- Left: text -->
+    <div class="reveal">
+      <div class="hero-kicker">
+        <span class="hero-kicker-dash"></span>
+        Government Business Growth Partner
+      </div>
+      <h1 class="hero-h1">
+        Discover Demand.<br>
+        Activate Channels.<br>
+        <em>Accelerate Growth.</em>
+      </h1>
+      <p class="hero-body">
+        Indiquad helps OEMs, brands, and manufacturers build, manage, and grow their government business in India — through the Indiquad Growth Framework™: a four-layer engine of Intelligence, Awareness, Trust, and Execution.
+      </p>
+      <div class="hero-actions">
+        <button class="btn-fill" onclick="smoothTo('contact')">Request a Demo</button>
+        <button class="btn-ghost" onclick="smoothTo('framework')">Explore the Framework</button>
+      </div>
+      <div class="hero-proof">
+        <span class="proof-label">Built for</span>
+        <div class="proof-chips">
+          <span class="proof-chip">OEMs</span>
+          <span class="proof-chip">Brands</span>
+          <span class="proof-chip">Manufacturers</span>
+          <span class="proof-chip">Resellers</span>
+          <span class="proof-chip">NBFCs</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Intelligence Dial -->
+    <div class="dial-wrap reveal reveal-d2">
+      <!-- Tooltip -->
+      <div class="dial-tooltip" id="dial-tip">
+        <div class="dt-name" id="dt-name"></div>
+        <div class="dt-desc" id="dt-desc"></div>
+      </div>
+
+      <svg id="dial" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="rg-ipin" cx="75%" cy="25%" r="70%">
+            <stop offset="0%" stop-color="#1E3A6E" stop-opacity=".95"/>
+            <stop offset="100%" stop-color="#0C1D39" stop-opacity=".9"/>
+          </radialGradient>
+          <radialGradient id="rg-ipan" cx="75%" cy="75%" r="70%">
+            <stop offset="0%" stop-color="#1C2F58" stop-opacity=".85"/>
+            <stop offset="100%" stop-color="#0C1D39" stop-opacity=".8"/>
+          </radialGradient>
+          <radialGradient id="rg-ipts" cx="25%" cy="75%" r="70%">
+            <stop offset="0%" stop-color="#0f4744" stop-opacity=".4"/>
+            <stop offset="100%" stop-color="#0C1D39" stop-opacity=".3"/>
+          </radialGradient>
+          <radialGradient id="rg-gbo" cx="25%" cy="25%" r="70%">
+            <stop offset="0%" stop-color="#2e1065" stop-opacity=".4"/>
+            <stop offset="100%" stop-color="#0C1D39" stop-opacity=".3"/>
+          </radialGradient>
+        </defs>
+
+        <!-- Outer ring decorations -->
+        <circle cx="250" cy="250" r="236" stroke="rgba(255,255,255,.05)" stroke-width="1.5"/>
+        <circle cx="250" cy="250" r="172" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+        <circle cx="250" cy="250" r="108" stroke="rgba(212,98,12,.12)" stroke-width="1"/>
+
+        <!-- Rotating group -->
+        <g id="dial-rot" style="transform-origin:250px 250px">
+
+          <!-- IPIN — top right quadrant -->
+          <path class="dial-segment" id="seg-ipin"
+            d="M250,250 L250,14 A236,236 0 0,1 486,250 Z"
+            fill="url(#rg-ipin)"
+            stroke="rgba(255,255,255,.06)" stroke-width="1"
+            data-key="ipin"
+          />
+          <!-- IPAN — bottom right -->
+          <path class="dial-segment" id="seg-ipan"
+            d="M250,250 L486,250 A236,236 0 0,1 250,486 Z"
+            fill="url(#rg-ipan)"
+            stroke="rgba(255,255,255,.06)" stroke-width="1"
+            data-key="ipan"
+          />
+          <!-- IPTS — bottom left -->
+          <path class="dial-segment" id="seg-ipts"
+            d="M250,250 L250,486 A236,236 0 0,1 14,250 Z"
+            fill="url(#rg-ipts)"
+            stroke="rgba(255,255,255,.06)" stroke-width="1"
+            data-key="ipts"
+          />
+          <!-- GBO — top left -->
+          <path class="dial-segment" id="seg-gbo"
+            d="M250,250 L14,250 A236,236 0 0,1 250,14 Z"
+            fill="url(#rg-gbo)"
+            stroke="rgba(255,255,255,.06)" stroke-width="1"
+            data-key="gbo"
+          />
+
+          <!-- Axis lines -->
+          <line x1="250" y1="14" x2="250" y2="486" stroke="rgba(255,255,255,.07)" stroke-width="1"/>
+          <line x1="14"  y1="250" x2="486" y2="250" stroke="rgba(255,255,255,.07)" stroke-width="1"/>
+
+          <!-- Quadrant labels — product name -->
+          <text x="368" y="172" text-anchor="middle" font-family="DM Serif Display,serif" font-size="17" fill="rgba(255,255,255,.78)">IPIN™</text>
+          <text x="368" y="190" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(255,255,255,.36)" letter-spacing="2" font-weight="600">INTELLIGENCE</text>
+
+          <text x="368" y="322" text-anchor="middle" font-family="DM Serif Display,serif" font-size="17" fill="rgba(255,255,255,.62)">IPAN™</text>
+          <text x="368" y="340" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(255,255,255,.28)" letter-spacing="2" font-weight="600">AWARENESS</text>
+
+          <text x="132" y="322" text-anchor="middle" font-family="DM Serif Display,serif" font-size="17" fill="rgba(15,118,110,.9)">IPTS™</text>
+          <text x="132" y="340" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(15,118,110,.6)" letter-spacing="2" font-weight="600">TRUST</text>
+
+          <text x="132" y="172" text-anchor="middle" font-family="DM Serif Display,serif" font-size="17" fill="rgba(107,33,168,.85)">GBO™</text>
+          <text x="132" y="190" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(107,33,168,.55)" letter-spacing="2" font-weight="600">EXECUTION</text>
+
+          <!-- Outer ring tick marks -->
+          <circle cx="250" cy="14"  r="4" fill="rgba(212,98,12,.6)"/>
+          <circle cx="486" cy="250" r="4" fill="rgba(212,98,12,.4)"/>
+          <circle cx="250" cy="486" r="4" fill="rgba(212,98,12,.25)"/>
+          <circle cx="14"  cy="250" r="4" fill="rgba(212,98,12,.15)"/>
+
+          <!-- Dashed outer glow ring -->
+          <circle cx="250" cy="250" r="236"
+            stroke="rgba(212,98,12,.18)" stroke-width="1.5"
+            stroke-dasharray="5 9" fill="none"/>
+        </g>
+
+        <!-- Centre — always static -->
+        <circle cx="250" cy="250" r="90" fill="#0C1D39" stroke="rgba(212,98,12,.25)" stroke-width="1.5"/>
+        <circle cx="250" cy="250" r="84" fill="none" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+
+        <text x="250" y="243" text-anchor="middle" font-family="DM Serif Display,serif" font-size="19" fill="white">INDIQUAD</text>
+        <text x="250" y="261" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8.5" fill="rgba(255,255,255,.32)" letter-spacing="2.5" font-weight="600">GROWTH FRAMEWORK™</text>
+        <text x="250" y="278" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="7.5" fill="rgba(255,255,255,.18)" letter-spacing="1.5">Intelligence · Awareness · Trust · Growth</text>
+      </svg>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ STATS ══ -->
+<div class="stats-ribbon">
+  <div class="stats-inner">
+    <div class="stat-cell"><div class="stat-n">15,000+</div><div class="stat-l">Verified Resellers</div></div>
+    <div class="stat-cell"><div class="stat-n">500+</div><div class="stat-l">OEM Partners</div></div>
+    <div class="stat-cell"><div class="stat-n">100K+</div><div class="stat-l">GeM Contracts Tracked</div></div>
+    <div class="stat-cell"><div class="stat-n">Pan India</div><div class="stat-l">District Coverage</div></div>
+    <div class="stat-cell"><div class="stat-n">4 Layers</div><div class="stat-l">Complete Framework</div></div>
+  </div>
+</div>
+
+<!-- ══ FRAMEWORK ══ -->
+<section class="section framework-bg" id="framework">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="eyebrow">The Indiquad Growth Framework™</div>
+      <h2 class="section-h2">Intelligence → Awareness → Trust → <em>Growth</em></h2>
+      <p class="section-lead">
+        Four integrated layers that compound over time. Most competitors address one in isolation —
+        a tender aggregator, a GeM consultant, a channel agency. Indiquad integrates all four into
+        a single, self-reinforcing engine.
+      </p>
+    </div>
+
+    <div class="framework-grid reveal">
+      <div class="fw-card fw-ipin">
+        <div class="fw-card-top-bar"></div>
+        <div class="fw-layer-tag">Layer 1 — Intelligence</div>
+        <span class="fw-product-name">IPIN™</span>
+        <div class="fw-product-full">Intelligent Procurement Information Network</div>
+        <p class="fw-desc">Tracks 100,000+ GeM contracts. Maps buyers, products, OEMs, and resellers across India — built on an in-house Python pipeline enriched by a GPT-4 Agentic AI layer.</p>
+        <span class="fw-link">Explore IPIN™ →</span>
+      </div>
+      <div class="fw-card fw-ipan">
+        <div class="fw-card-top-bar"></div>
+        <div class="fw-layer-tag">Layer 2 — Awareness</div>
+        <span class="fw-product-name">IPAN™</span>
+        <div class="fw-product-full">Intelligent Product Awareness Network</div>
+        <p class="fw-desc">Creates product visibility through data-targeted campaigns, reseller recruitment programs, GeM product launches, and channel activation — all driven by IPIN™ demand intelligence.</p>
+        <span class="fw-link">Explore IPAN™ →</span>
+      </div>
+      <div class="fw-card fw-ipts">
+        <div class="fw-card-top-bar"></div>
+        <div class="fw-layer-tag">Layer 3 — Trust</div>
+        <span class="fw-product-name">IPTS™</span>
+        <div class="fw-product-full">Indiquad Procurement Trust Score</div>
+        <p class="fw-desc">Scores resellers on credibility using verified GeM order history. Enables OEM partner selection, government buyer confidence, and channel finance access for NBFCs and lenders.</p>
+        <span class="fw-link">Explore IPTS™ →</span>
+      </div>
+      <div class="fw-card fw-gbo">
+        <div class="fw-card-top-bar"></div>
+        <div class="fw-layer-tag">Layer 4 — Execution</div>
+        <span class="fw-product-name">GBO™</span>
+        <div class="fw-product-full">Government Business Outsourcing</div>
+        <p class="fw-desc">Fully managed government business — GeM management, bid handling, order fulfilment, channel performance, and buyer development. Your government sales function, run entirely by Indiquad.</p>
+        <span class="fw-link">Explore GBO™ →</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ IPIN ══ -->
+<section class="section ipin-bg" id="ipin">
+  <div class="section-inner">
+    <div class="ipin-grid">
+
+      <div class="reveal">
+        <div class="eyebrow">Layer 1 — IPIN™</div>
+        <h2 class="section-h2">Every Government Contract.<br><em>Tracked & Structured.</em></h2>
+        <p class="section-lead">Built in-house — not a data aggregator. A three-stage Python pipeline processes GeM contracts every day, enriched by a GPT-4 Agentic AI layer that classifies, maps, and scores each record.</p>
+
+        <div class="pipeline">
+          <div class="pipeline-step">
+            <div class="pipeline-step-tag">Stage 1 — Discovery</div>
+            <div class="pipeline-step-title">GeM Contract Collector</div>
+            <div class="pipeline-step-desc">The Pipeline Ops Agent automatically initiates a daily retrieval process that queries the GeM public contracts interface for contracts published during the previous day's date range. The process runs autonomously without manual intervention, dynamically determines the required date window, retrieves the available contract records, and passes the data to the downstream ingestion, validation, transformation, and storage pipeline.
+.</div>
+            <span class="pipeline-step-badge">Daily · Automated</span>
+          </div>
+          <div class="pipeline-step">
+            <div class="pipeline-step-tag">Stage 2 — Retrieval</div>
+            <div class="pipeline-step-title">PDF Download & Storage</div>
+            <div class="pipeline-step-desc">Each contract PDF is downloaded and stored as an unaltered source-of-truth copy. Failed downloads are automatically retried; persistent failures escalate to the Data/Engineering team.</div>
+            <span class="pipeline-step-badge">Python · Parallel Workers</span>
+          </div>
+          <div class="pipeline-step">
+            <div class="pipeline-step-tag">Stage 3 — Enrichment</div>
+            <div class="pipeline-step-title">AI Parsing & Enrichment</div>
+            <div class="pipeline-step-desc">Parallel workers extract structured fields from each PDF. A GPT-4 Enrichment Agent then maps product categories, resolves OEM associations, deduplicates buyer/seller entities, and assigns a confidence score — routing low-confidence records to manual review.</div>
+            <span class="pipeline-step-badge ai-badge">GPT-4 · Enrichment Agent</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-d2">
+        <div class="contract-feed">
+          <div class="cf-header">
+            <span class="cf-title">IPIN™ · GeM Contract Feed</span>
+            <span class="cf-live"><span class="live-dot"></span> Live</span>
+          </div>
+          <div class="cf-item"><div class="cf-dot" style="background:#f59e0b;margin-top:4px"></div><div class="cf-body"><div class="cf-org">Ministry of Defence – New Delhi</div><div class="cf-detail">Networking switches & routers · ₹4.2 Cr</div><div class="cf-meta"><span class="cf-tag">IT & Networking</span><span class="cf-id">GeM #38821</span></div></div></div>
+          <div class="cf-item"><div class="cf-dot" style="background:#4ade80;margin-top:4px"></div><div class="cf-body"><div class="cf-org">AIIMS – New Delhi</div><div class="cf-detail">Laptop computers · 320 units</div><div class="cf-meta"><span class="cf-tag">Computing</span><span class="cf-id">GeM #39104</span></div></div></div>
+          <div class="cf-item"><div class="cf-dot" style="background:#818cf8;margin-top:4px"></div><div class="cf-body"><div class="cf-org">ISRO – Bengaluru</div><div class="cf-detail">High-performance workstations · 45 units</div><div class="cf-meta"><span class="cf-tag">Computing</span><span class="cf-id">GeM #39287</span></div></div></div>
+          <div class="cf-item"><div class="cf-dot" style="background:#f59e0b;margin-top:4px"></div><div class="cf-body"><div class="cf-org">NHAI – Pan India</div><div class="cf-detail">Surveillance cameras & NVRs · 1,200 units</div><div class="cf-meta"><span class="cf-tag">Security</span><span class="cf-id">GeM #39412</span></div></div></div>
+          <div class="cf-item"><div class="cf-dot" style="background:#4ade80;margin-top:4px"></div><div class="cf-body"><div class="cf-org">State Bank of India – Pan India</div><div class="cf-detail">ATM hardware refresh · 22,000 units</div><div class="cf-meta"><span class="cf-tag">Computing</span><span class="cf-id">GeM #39501</span></div></div></div>
+          <div class="cf-metrics">
+            <div class="cf-m"><div class="cf-m-val">100K+</div><div class="cf-m-lbl">Contracts</div></div>
+            <div class="cf-m"><div class="cf-m-val">15K+</div><div class="cf-m-lbl">Resellers</div></div>
+            <div class="cf-m"><div class="cf-m-val">500+</div><div class="cf-m-lbl">Categories</div></div>
+            <div class="cf-m"><div class="cf-m-val">Daily</div><div class="cf-m-lbl">Refresh</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ SIX INTELLIGENCE LAYERS ══ -->
+<section class="section layers-bg" id="layers">
+  <div class="section-inner layers-inner">
+    <div class="reveal">
+      <div class="eyebrow">Six Intelligence Layers</div>
+      <h2 class="section-h2 light">One Network. <em>Complete Visibility.</em></h2>
+      <p class="section-lead light">IPIN™ powers Indiquad across six intelligence dimensions — giving every engagement the sharpest possible data foundation.</p>
+    </div>
+    <div class="layers-grid">
+      <div class="layer-card reveal"><div class="lc-icon">👤</div><div class="lc-name">Buyer Intelligence</div><p class="lc-desc">Who buys, what they buy, and how often — across 10,000+ government organisations on GeM.</p></div>
+      <div class="layer-card reveal reveal-d1"><div class="lc-icon">📦</div><div class="lc-name">Product Intelligence</div><p class="lc-desc">Category demand, adoption, and growth mapped by geography and buyer segment.</p></div>
+      <div class="layer-card reveal reveal-d2"><div class="lc-icon">🏭</div><div class="lc-name">OEM Intelligence</div><p class="lc-desc">Market presence, product visibility, and competitive performance across GeM categories.</p></div>
+      <div class="layer-card reveal"><div class="lc-icon">🤝</div><div class="lc-name">Reseller Intelligence</div><p class="lc-desc">Discover, evaluate, and score channel partners — know which resellers win, where, and why.</p></div>
+      <div class="layer-card reveal reveal-d1"><div class="lc-icon">📈</div><div class="lc-name">Market Intelligence</div><p class="lc-desc">Trends, high-growth regions, emerging sectors, and competitive share across India's government market.</p></div>
+      <div class="layer-card reveal reveal-d2"><div class="lc-icon">🎯</div><div class="lc-name">Demand Intelligence</div><p class="lc-desc">Real-time demand from GeM contracts — which categories are accelerating and which opportunities matter most.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ AGENTIC AI ══ -->
+<section class="section ai-bg" id="ai">
+  <div class="section-inner layers-inner">
+    <div class="reveal">
+      <div class="eyebrow">Powered by Agentic AI</div>
+      <h2 class="section-h2 light">Three AI Agents. <em>Zero Manual Ops.</em></h2>
+      <p class="section-lead light">A three-tier GPT-4 Agentic AI layer sits across the pipeline, the data, and the user interface — replacing manual operations with autonomous, self-correcting intelligence.</p>
+    </div>
+    <div class="ai-grid">
+      <div class="ai-card reveal">
+        <div class="ai-tier-tag">Tier 1 — Pipeline Agent</div>
+        <div class="ai-card-title">Pipeline Operations Agent</div>
+        <p class="ai-card-desc">Autonomously monitors and orchestrates the daily contract retrieval → document download → data extraction workflow. Manages scheduling, execution, health monitoring, retries, exception handling, and recovery, eliminating the need for manual pipeline operations..</p>
+        <div class="ai-bullets">
+          <div class="ai-bullet">Triggers daily scraper run without manual initiation</div>
+          <div class="ai-bullet">Detects & classifies failures; retries automatically</div>
+          <div class="ai-bullet">Delivers daily health summary to Engineering team</div>
+          <div class="ai-bullet">Escalates unresolved failures with structured report</div>
+        </div>
+      </div>
+      <div class="ai-card reveal reveal-d1">
+        <div class="ai-tier-tag">Tier 2 — Enrichment Agent</div>
+        <div class="ai-card-title">Data Enrichment Agent</div>
+        <p class="ai-card-desc">Reads every parsed contract record and enriches it with AI-generated category classifications, entity mappings, and confidence scores.</p>
+        <div class="ai-bullets">
+          <div class="ai-bullet">Maps contracts to standardised IPIN™ category taxonomy</div>
+          <div class="ai-bullet">Identifies and maps OEM/brand from product descriptions</div>
+          <div class="ai-bullet">Deduplicates buyer & seller entities across naming variants</div>
+          <div class="ai-bullet">Routes low-confidence records to manual review queue</div>
+        </div>
+      </div>
+      <div class="ai-card reveal reveal-d2">
+        <div class="ai-tier-tag">Tier 3 — Conversational Interface</div>
+        <div class="ai-card-title">Conversational Intelligence</div>
+        <p class="ai-card-desc">Internal teams ask procurement questions in plain English and get instant, cited answers from the IPIN™ database. No dashboards. No SQL.</p>
+        <div class="ai-bullets">
+          <div class="ai-bullet">Translates natural-language queries into database queries</div>
+          <div class="ai-bullet">Cites the exact contracts forming each answer</div>
+          <div class="ai-bullet">Handles ambiguous queries with a clarifying question</div>
+          <div class="ai-bullet">Strictly scoped to IPIN™ data — no hallucinated answers</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ IPAN ══ -->
+<section class="section ipan-bg" id="ipan">
+  <div class="section-inner">
+    <div class="ipan-grid">
+
+      <div class="reveal">
+        <div class="eyebrow">Layer 2 — IPAN™</div>
+        <h2 class="section-h2">Visibility Where<br><em>Decisions Are Made.</em></h2>
+        <p class="section-lead">IPAN™ ensures government buyers know your products exist — placing them precisely at the right buyer, in the right geography, at the right time. All targeting is driven by IPIN™ demand intelligence, not guesswork.</p>
+        <div class="program-cards">
+          <div class="prog-card"><div class="prog-icon">📣</div><div><div class="prog-title">Awareness Campaigns</div><div class="prog-desc">Targeted buyer outreach in high-demand categories and geographies, validated by IPIN™ demand heatmaps before a single rupee is spent.</div></div></div>
+          <div class="prog-card"><div class="prog-icon">🤝</div><div><div class="prog-title">Reseller Recruitment & Activation</div><div class="prog-desc">Precision recruitment from the IPIN™ reseller database. Track every partner from shortlisted → contacted → onboarded → first order placed.</div></div></div>
+          <div class="prog-card"><div class="prog-icon">🚀</div><div><div class="prog-title">GeM Product Launch Support</div><div class="prog-desc">Structured market activation for new products — launch target buyer lists, direct outreach, and 30/60/90-day outcome tracking.</div></div></div>
+          <div class="prog-card"><div class="prog-icon">🎓</div><div><div class="prog-title">Channel Training & Engagement</div><div class="prog-desc">Ongoing reseller training, partner days, and engagement programs to keep the activated channel productive and informed.</div></div></div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-d2">
+        <div class="ipan-vis">
+          <div class="ipan-big">
+            <div class="ipan-big-label">Active Resellers in Network</div>
+            <div class="ipan-big-num">15,<em>000+</em></div>
+            <div class="ipan-big-sub">Verified, scored, and ready to activate across India</div>
+          </div>
+          <div class="ipan-big">
+            <div class="ipan-big-label">GeM Categories Mapped</div>
+            <div class="ipan-big-num">500<em>+</em></div>
+            <div class="ipan-big-sub">Mapped to IPIN™ taxonomy and live demand signals</div>
+          </div>
+          <div class="category-cloud">
+            <span class="cat-chip">IT Hardware</span>
+            <span class="cat-chip">Networking</span>
+            <span class="cat-chip">Security</span>
+            <span class="cat-chip">Computing Devices</span>
+            <span class="cat-chip">Power & Electrical</span>
+            <span class="cat-chip">Industrial Equipment</span>
+            <span class="cat-chip">Medical Devices</span>
+            <span class="cat-chip">Furniture</span>
+            <span class="cat-chip">Stationery</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ IPTS ══ -->
+<section class="section ipts-bg" id="ipts">
+  <div class="section-inner">
+    <div class="ipts-grid">
+
+      <div class="reveal">
+        <div class="eyebrow">Layer 3 — IPTS™</div>
+        <h2 class="section-h2">A Trust Score Built on<br><em>Real Transactions.</em></h2>
+        <p class="section-lead">The Indiquad Procurement Trust Score™ is a composite credibility signal built entirely from verified GeM order history — not self-reported data, not proxies, not credit bureau assumptions.</p>
+
+        <div class="tier-list">
+          <div class="tier-row t-plat">
+            <span class="tier-label">Platinum</span>
+            <div class="tier-track"><div class="tier-bar"></div></div>
+            <span class="tier-desc">Top tier</span>
+          </div>
+          <div class="tier-row t-gold">
+            <span class="tier-label">Gold</span>
+            <div class="tier-track"><div class="tier-bar"></div></div>
+            <span class="tier-desc">Strong</span>
+          </div>
+          <div class="tier-row t-silv">
+            <span class="tier-label">Silver</span>
+            <div class="tier-track"><div class="tier-bar"></div></div>
+            <span class="tier-desc">Moderate</span>
+          </div>
+          <div class="tier-row t-watch">
+            <span class="tier-label">Watch</span>
+            <div class="tier-track"><div class="tier-bar"></div></div>
+            <span class="tier-desc">Review</span>
+          </div>
+        </div>
+
+        <div class="dim-cloud">
+          <span class="dim-chip">Order Consistency</span>
+          <span class="dim-chip">Fulfilment Rate</span>
+          <span class="dim-chip">Buyer Diversity</span>
+          <span class="dim-chip">Category Breadth</span>
+          <span class="dim-chip">GeM Tenure</span>
+          <span class="dim-chip">Order Value Tier</span>
+          <span class="dim-chip">Dispute Rate</span>
+        </div>
+
+        <p class="ipts-note">Score recalculated weekly from IPIN™ contract data. All dimension weights validated against historical data. IPTS™ is a procurement trust signal — not a regulated credit bureau rating.</p>
+      </div>
+
+      <div class="reveal reveal-d2">
+        <div class="reseller-card">
+          <div class="rc-head">
+            <span class="rc-head-label">IPTS™ · Reseller Profile</span>
+            <span class="rc-tier-badge">Platinum</span>
+          </div>
+          <div class="rc-body-inner">
+            <div class="rc-company">TechEdge Solutions Pvt. Ltd.</div>
+            <div class="rc-location">Pune, Maharashtra · GeM Seller since 2019</div>
+            <div class="rc-kpis">
+              <div class="rc-kpi"><div class="rc-kpi-val">312</div><div class="rc-kpi-lbl">GeM Orders</div></div>
+              <div class="rc-kpi"><div class="rc-kpi-val">₹6.8 Cr</div><div class="rc-kpi-lbl">12mo Value</div></div>
+              <div class="rc-kpi"><div class="rc-kpi-val">96%</div><div class="rc-kpi-lbl">Fulfilment</div></div>
+            </div>
+            <div class="rc-bars">
+              <div class="rc-bar-row"><span class="rc-bar-name">Order Consistency</span><div class="rc-bar-track"><div class="rc-bar-fill" style="width:91%"></div></div><span class="rc-bar-val">91/100</span></div>
+              <div class="rc-bar-row"><span class="rc-bar-name">Buyer Diversity</span><div class="rc-bar-track"><div class="rc-bar-fill" style="width:88%"></div></div><span class="rc-bar-val">88/100</span></div>
+              <div class="rc-bar-row"><span class="rc-bar-name">Fulfilment Rate</span><div class="rc-bar-track"><div class="rc-bar-fill" style="width:96%"></div></div><span class="rc-bar-val">96/100</span></div>
+              <div class="rc-bar-row"><span class="rc-bar-name">GeM Tenure</span><div class="rc-bar-track"><div class="rc-bar-fill" style="width:82%"></div></div><span class="rc-bar-val">82/100</span></div>
+              <div class="rc-bar-row"><span class="rc-bar-name">Order Value Tier</span><div class="rc-bar-track"><div class="rc-bar-fill" style="width:78%"></div></div><span class="rc-bar-val">78/100</span></div>
+            </div>
+            <div class="rc-footer">⚡ Powered by IPIN™ Contract Intelligence</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ NBFC ══ -->
+<section class="section nbfc-bg" id="nbfc">
+  <div class="section-inner">
+    <div class="nbfc-grid">
+
+      <div class="reveal">
+        <div class="eyebrow">For NBFCs & Lenders</div>
+        <h2 class="section-h2">Channel Finance Built<br><em>on Real GeM Data.</em></h2>
+        <p class="section-lead">NBFCs and financial institutions subscribe to IPIN™ and IPTS™ to verify reseller credibility and track GeM order history — before extending channel finance, not after.</p>
+        <div class="use-list">
+          <div class="use-item"><div class="use-icon">🔍</div><div><div class="use-title">Reseller Background Verification</div><div class="use-desc">GeM registration history, order count, years active, and category footprint — before underwriting a single rupee.</div></div></div>
+          <div class="use-item"><div class="use-icon">📦</div><div><div class="use-title">Order & Fulfilment Tracking</div><div class="use-desc">Live and historical GeM order status to assess repayment capacity tied to confirmed government orders.</div></div></div>
+          <div class="use-item"><div class="use-icon">📈</div><div><div class="use-title">IPTS™ Credibility Scores</div><div class="use-desc">Composite trust scores from real order data — designed for credit decisioning context, clearly labelled as procurement signals.</div></div></div>
+          <div class="use-item"><div class="use-icon">🔔</div><div><div class="use-title">Portfolio Monitoring</div><div class="use-desc">Weekly score updates and immediate alerts on activity drops or disputes for resellers already in your lending portfolio.</div></div></div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-d2">
+        <div class="nbfc-vis">
+          <div class="nbfc-profile">
+            <div class="nbfc-prof-row">
+              <div class="nbfc-avatar">TE</div>
+              <div>
+                <div class="nbfc-co-name">TechEdge Solutions Pvt. Ltd.</div>
+                <div class="nbfc-co-loc">Pune, Maharashtra · GeM since 2019</div>
+              </div>
+              <div class="nbfc-risk">Low Risk</div>
+            </div>
+            <div class="nbfc-kpis">
+              <div class="nbfc-kpi"><div class="nbfc-kpi-val">312</div><div class="nbfc-kpi-lbl">Orders</div></div>
+              <div class="nbfc-kpi"><div class="nbfc-kpi-val">₹6.8 Cr</div><div class="nbfc-kpi-lbl">Value (12mo)</div></div>
+              <div class="nbfc-kpi"><div class="nbfc-kpi-val">96%</div><div class="nbfc-kpi-lbl">Fulfilment</div></div>
+            </div>
+            <div class="nbfc-orders-label">Recent GeM Orders</div>
+            <div class="nbfc-order-row"><div class="nbfc-od" style="background:#4ade80"></div><div class="nbfc-ot">Networking equipment — Maharashtra Police</div><div class="nbfc-ov">₹18.4L</div></div>
+            <div class="nbfc-order-row"><div class="nbfc-od" style="background:#4ade80"></div><div class="nbfc-ot">Laptops — Pune Municipal Corp.</div><div class="nbfc-ov">₹9.2L</div></div>
+            <div class="nbfc-order-row"><div class="nbfc-od" style="background:#f59e0b"></div><div class="nbfc-ot">UPS systems — Zilla Parishad, Nashik</div><div class="nbfc-ov">₹4.6L</div></div>
+          </div>
+          <div class="nbfc-disclaimer">
+            <strong>Important:</strong> IPTS™ scores are procurement trust signals derived from verified GeM order history. They are not credit bureau ratings or regulated financial assessments. All subscriber agreements include explicit usage terms. Legal review is recommended prior to production deployment.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ GBO ══ -->
+<section class="section gbo-bg" id="gbo">
+  <div class="section-inner gbo-inner">
+    <div class="reveal">
+      <div class="eyebrow">Layer 4 — GBO™</div>
+      <h2 class="section-h2 light">We Run Your Government<br><em>Business End-to-End.</em></h2>
+      <p class="section-lead light">Fully managed government business operations — so your team focuses on your product while Indiquad owns the government channel entirely. No internal government sales headcount required.</p>
+    </div>
+
+    <div class="gbo-grid">
+      <div class="gbo-card reveal"><div class="gbo-card-tag">Operations</div><div class="gbo-card-title">GeM Management</div><p class="gbo-card-desc">Catalogue maintenance, listing optimisation, category placement, and compliance — done right, updated continuously.</p></div>
+      <div class="gbo-card reveal reveal-d1"><div class="gbo-card-tag">Sales</div><div class="gbo-card-title">Bid & Order Management</div><p class="gbo-card-desc">End-to-end bid submission, order processing, and fulfilment coordination — no government opportunity missed.</p></div>
+      <div class="gbo-card reveal reveal-d2"><div class="gbo-card-tag">Channel</div><div class="gbo-card-title">Partner Management</div><p class="gbo-card-desc">Ongoing reseller activation, performance tracking, and relationship management across your channel network.</p></div>
+      <div class="gbo-card reveal"><div class="gbo-card-tag">Buyers</div><div class="gbo-card-title">Buyer Development</div><p class="gbo-card-desc">Structured outreach to IPIN™-identified high-value buyers — building relationships before the tender is published.</p></div>
+      <div class="gbo-card reveal reveal-d1"><div class="gbo-card-tag">Intelligence</div><div class="gbo-card-title">Market Reporting</div><p class="gbo-card-desc">Regular intelligence reports: what's selling, who's buying, how competitors are performing, where to grow next.</p></div>
+      <div class="gbo-card reveal reveal-d2"><div class="gbo-card-tag">Finance</div><div class="gbo-card-title">Channel Finance Access</div><p class="gbo-card-desc">IPTS™-scored resellers in your channel can access working capital finance tied to confirmed GeM orders.</p></div>
+    </div>
+
+    <div class="gbo-revenue">
+      <div class="gbo-rev-card"><div class="gbo-rev-tag">Revenue Model</div><div class="gbo-rev-title">Monthly Retainer</div><div class="gbo-rev-desc">Fixed monthly fee for fully managed GBO services — aligns Indiquad's team with your government revenue goals.</div></div>
+      <div class="gbo-rev-card"><div class="gbo-rev-tag">Revenue Model</div><div class="gbo-rev-title">Success Fees</div><div class="gbo-rev-desc">Performance-linked fees on GeM order value facilitated through your managed channel network.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ MOAT ══ -->
+<section class="section moat-bg" id="moat">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="eyebrow">Competitive Advantage</div>
+      <h2 class="section-h2">What Makes This <em>Defensible.</em></h2>
+      <p class="section-lead">Each layer of the framework strengthens every other. The longer a client engages, the harder it becomes for a single-layer competitor to match what Indiquad delivers.</p>
+    </div>
+    <div class="moat-grid">
+      <div class="moat-card reveal">
+        <div class="moat-num">01</div>
+        <div class="moat-title">Proprietary Data Pipeline</div>
+        <p class="moat-desc">The scraper + parallel PDF parser + GPT enrichment engine is built and refined in-house. A competitor needs years of real GeM contract data — not just API access — to reach the same intelligence depth and accuracy.</p>
+      </div>
+      <div class="moat-card reveal reveal-d1">
+        <div class="moat-num">02</div>
+        <div class="moat-title">Network Effects</div>
+        <p class="moat-desc">More OEM clients → more GBO transactions → richer IPIN™ data → sharper IPAN™ targeting → more resellers onboarded → larger IPTS™ scoring pool → more NBFC subscribers. Every layer growing makes every other layer more valuable.</p>
+      </div>
+      <div class="moat-card reveal">
+        <div class="moat-num">03</div>
+        <div class="moat-title">Three-Sided Ecosystem</div>
+        <p class="moat-desc">Indiquad sits at the centre of OEMs, resellers, and lenders. Any single-layer competitor touches only one side. Indiquad touches all three simultaneously — making switching costly and cross-sell natural.</p>
+      </div>
+      <div class="moat-card reveal reveal-d1">
+        <div class="moat-num">04</div>
+        <div class="moat-title">Compounding Intelligence</div>
+        <p class="moat-desc">Unlike consultant knowledge that leaves when the engagement ends, IPIN™'s intelligence compounds in a database that gets sharper with every contract tracked, every engagement completed, and every reseller profiled.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ══ -->
+<div class="cta-band">
+  <div class="cta-inner reveal">
+    <div class="cta-eyebrow">Ready to Grow?</div>
+    <h2 class="cta-h2">Ready to Understand<br>Your Market<em>?</em></h2>
+    <p class="cta-body">Join OEMs, manufacturers, and channel partners who use the Indiquad Growth Framework™ to discover government demand, activate the right channels, and accelerate revenue — without building an internal government sales function.</p>
+    <div class="cta-buttons">
+      <button class="btn-cta-fill" onclick="smoothTo('contact')">Request a Demo →</button>
+      <button class="btn-cta-ghost" onclick="smoothTo('framework')">Explore the Framework</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CONTACT ══ -->
+<div class="contact-section" id="contact">
+  <div class="contact-grid">
+
+    <div class="reveal">
+      <div class="eyebrow">Get in Touch</div>
+      <h2 class="section-h2">Let's Talk About Your<br>Government <em>Business.</em></h2>
+      <p class="section-lead" style="margin-bottom:0">Tell us about your products and goals — our team responds within one business day.</p>
+
+      <div class="contact-info-list">
+        <div class="ci"><div class="ci-icon">✉️</div><div><div class="ci-label">Email</div><div class="ci-value"><a href="mailto:business@indiquad.com">business@indiquad.com</a></div><div class="ci-sub">General enquiries & partnerships</div></div></div>
+        <div class="ci"><div class="ci-icon">📞</div><div><div class="ci-label">Phone</div><div class="ci-value"><a href="tel:+918088052620">+91 8088052620</a></div><div class="ci-sub">Mon–Sat, 10:00 AM – 8:00 PM IST</div></div></div>
+        <div class="ci"><div class="ci-icon">📍</div><div><div class="ci-label">Office</div><div class="ci-value">New Delhi, India</div><div class="ci-sub">Pan India coverage & on-ground teams</div></div></div>
+        <div class="ci"><div class="ci-icon">🗓️</div><div><div class="ci-label">Book a Demo</div><div class="ci-value">30-min framework walkthrough</div><div class="ci-sub">See IPIN™ intelligence in action</div></div></div>
+      </div>
+
+      <div class="contact-trust">
+        <span class="contact-trust-badge">🏛 GeM Enabled</span>
+        <span class="contact-trust-badge">⚡ Reply within 24 hrs</span>
+        <span class="contact-trust-badge">🔒 NDA on request</span>
+        <span class="contact-trust-badge">🇮🇳 Made in India</span>
+      </div>
+    </div>
+
+    <div class="contact-form-card reveal reveal-d1">
+      <form id="contactForm">
+        <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Full Name <span class="req">*</span></label><input class="form-input" type="text" name="name" placeholder="Your full name" required></div>
+          <div class="form-group"><label class="form-label">Work Email <span class="req">*</span></label><input class="form-input" type="email" name="email" placeholder="you@company.com" required></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Company <span class="req">*</span></label><input class="form-input" type="text" name="company" placeholder="Your company" required></div>
+          <div class="form-group"><label class="form-label">Phone</label><input class="form-input" type="tel" name="phone" placeholder="+91 00000 00000"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">I am a <span class="req">*</span></label>
+            <select class="form-select" name="role" required>
+              <option value="" disabled selected>Select your role</option>
+              <option>OEM / Manufacturer</option>
+              <option>Brand</option>
+              <option>Distributor</option>
+              <option>Reseller / Channel Partner</option>
+              <option>NBFC / Financial Institution</option>
+              <option>Government Buyer</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Interested in <span class="req">*</span></label>
+            <select class="form-select" name="interest" required>
+              <option value="" disabled selected>Select area</option>
+              <option>GeM Enablement (GBO™)</option>
+              <option>Channel Development (IPAN™)</option>
+              <option>Market Intelligence (IPIN™)</option>
+              <option>Reseller Trust Scores (IPTS™)</option>
+              <option>NBFC Reseller Tracking</option>
+              <option>Full Growth Framework</option>
+              <option>General Enquiry</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tell us about your goals</label>
+          <textarea class="form-textarea" name="message" placeholder="Your products, current government business, and what you want to achieve..."></textarea>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" id="consent" required>
+          <label for="consent">I agree to be contacted by Indiquad regarding my enquiry and accept the <a href="#">Privacy Policy</a>.</label>
+        </div>
+        <button class="form-submit" type="submit">Submit Enquiry →</button>
+        <div class="form-note">We typically respond within 1 business day.</div>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <a class="footer-brand-logo" href="#top">
+          <div class="footer-brand-logo-mark">
+            <svg viewBox="0 0 18 18" fill="none">
+              <rect x="2" y="2.5" width="2.8" height="13" rx=".9" fill="rgba(255,255,255,.45)"/>
+              <circle cx="12" cy="8.5" r="5.2" stroke="rgba(255,255,255,.45)" stroke-width="2.2" fill="none"/>
+              <line x1="15.8" y1="12.5" x2="18.2" y2="16" stroke="#D4620C" stroke-width="2.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="footer-brand-name">INDIQUAD</span>
+        </a>
+        <p class="footer-brand-desc">Government Business Growth Partner — helping OEMs, brands and manufacturers win in India's government market.</p>
+        <div class="footer-brand-tags">
+          <span class="footer-brand-tag">GeM Enabled</span>
+          <span class="footer-brand-tag">IPIN™ Powered</span>
+          <span class="footer-brand-tag">Made in India 🇮🇳</span>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Framework</h5>
+        <a href="#ipin">IPIN™ — Intelligence</a>
+        <a href="#ipan">IPAN™ — Awareness</a>
+        <a href="#ipts">IPTS™ — Trust</a>
+        <a href="#gbo">GBO™ — Execution</a>
+      </div>
+      <div class="footer-col">
+        <h5>Platform</h5>
+        <a href="#">GeM Enablement23</a>
+        <a href="#">Channel Development</a>
+        <a href="#">Buyer Discovery</a>
+        <a href="#">Market Intelligence</a>
+        <a href="#">GBO Services</a>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="#">About Us</a>
+        <a href="#">Careers</a>
+        <a href="#">Blog</a>
+        <a href="#">Press</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h5>Legal</h5>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+        <a href="#">Security</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Indiquad Technologies Pvt. Ltd. All rights reserved.</div>
+      <div class="footer-powered"><div class="footer-powered-dot"></div> Powered by IPIN™</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ─── SMOOTH SCROLL ─── */
+function smoothTo(id) {
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+}
+
+/* ─── NAV PIN ─── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('pinned', window.scrollY > 24);
+}, { passive: true });
+
+/* ─── SCROLL REVEAL ─── */
+const revEls = document.querySelectorAll('.reveal');
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+revEls.forEach(el => ro.observe(el));
+
+/* ─── DIAL ROTATION ─── */
+const dialRot = document.getElementById('dial-rot');
+if (dialRot) {
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes dialSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  `;
+  document.head.appendChild(style);
+  dialRot.style.animation = 'dialSpin 100s linear infinite';
+  dialRot.style.transformOrigin = '250px 250px';
+}
+
+/* ─── DIAL HOVER ─── */
+const dialData = {
+  ipin: { name: 'IPIN™ — Intelligence', desc: 'Tracks 100K+ GeM contracts daily. Powered by scraper + PDF parser + GPT-4 Enrichment Agent.' },
+  ipan: { name: 'IPAN™ — Awareness', desc: 'Targeted campaigns, reseller recruitment & product activation — driven by IPIN™ demand heatmaps.' },
+  ipts: { name: 'IPTS™ — Trust', desc: 'Procurement Trust Scores from real GeM order data. Enables NBFC underwriting and OEM channel selection.' },
+  gbo:  { name: 'GBO™ — Execution', desc: 'Fully managed government business — GeM, bids, channel, buyers. Your sales function, outsourced entirely.' },
+};
+
+const dialTip = document.getElementById('dial-tip');
+const dtName  = document.getElementById('dt-name');
+const dtDesc  = document.getElementById('dt-desc');
+
+document.querySelectorAll('.dial-segment').forEach(seg => {
+  seg.addEventListener('mouseenter', () => {
+    const key = seg.dataset.key;
+    const d = dialData[key];
+    if (!d) return;
+    dtName.textContent = d.name;
+    dtDesc.textContent = d.desc;
+    dialTip.style.top  = '50%';
+    dialTip.style.left = '50%';
+    dialTip.style.transform = 'translate(-50%,-50%)';
+    dialTip.classList.add('visible');
+    dialRot.style.animationPlayState = 'paused';
+  });
+  seg.addEventListener('mouseleave', () => {
+    dialTip.classList.remove('visible');
+    dialRot.style.animationPlayState = 'running';
+  });
+});
+
+</script>
+<script src="js/contact.js"></script>
+
+</body>
+</html>
